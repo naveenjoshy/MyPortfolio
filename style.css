@@ -1157,6 +1157,18 @@ h1,  h2,  h3,  h4,  h5,  h6{
 .mf{
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+.footer-logo{
+  width: 70px;
+  height: 70px;
+}
+.footer-social-logo{
+  width: 24px;
+  height: 24px;
+}
+.footer-social-logo:hover{
+  transform: scale(2.0);
+  transition: all .2s ease-in-out;
+}
 @keyframes ud-ping{
 
   75%, 100%{
