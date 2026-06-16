@@ -8,6 +8,7 @@
   <title>Mr. Naveen Joshy -  Web Development services</title>
   <link rel="icon" href="logo.gif">
   <link href="style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 <body x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
@@ -18,11 +19,11 @@
   <!-- ===== Header Start ===== -->
   <header class="g s r vd ya cj" :class="{ 'hh sm _k dj bl ll' : stickyMenu }"
     @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false">
-    <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i">
-      <div class="vd to/4 tc wf yf">
+    <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i @container">
+      <div class="vd to/4 tc wf yf flex flex-col @md:flex-row">
         <href="index.html">
-          <img class="om" src="images/logo-light.png" alt="Logo Light" width="90px"/><span>
-          <img class="xc nm" src="images/logo-dark.png" alt="Logo Dark" width="90px"/><span>
+          <img class="om" src="images/logo-light.png" alt="Logo Light" width="70px" height="70px"/><span>
+          <img class="xc nm" src="images/logo-dark.png" alt="Logo Dark" width="70px" height="70px"/><span>
             <h1 class="kk wm">Naveen Joshy</h1>
         </a>
 
@@ -109,8 +110,8 @@
       <div class="bb ze ki xn 2xl:ud-px-0">
         <div class="tc _o">
           <div class="animate_left jn/2">
-            <h1 class="fk vj zp or kk wm wb">Mr. Naveen Joshy</h1>
-            <p class="fq">
+            <h1 class="fk vj zp or kk wm wb">Naveen Joshy</h1>
+            <p class="fq text-center sm:text-left">
               Full-Stack Developer specializing in the MERN ecosystem. I bridge the gap between pixel-perfect user 
               interfaces and secure, high-performance server architecture. 
               Passionate about clean code, efficient databases, and smooth animations.
@@ -136,7 +137,7 @@
             </div>
             <div>
               <h4 class="ek yj go kk wm xb">Constant Learner</h4>
-              <p>I code to build, but I learn to endure.</p>
+              <p class="text-left md:text-center">I code to build, but I learn to endure.</p>
             </div>
           </div>
 
@@ -147,7 +148,7 @@
             </div>
             <div>
               <h4 class="ek yj go kk wm xb">Highly Curious</h4>
-              <p>Each line of code is a new opportunity.</p>
+              <p class="text-left md:text-center">Each line of code is a new opportunity.</p>
             </div>
           </div>
 
@@ -158,7 +159,7 @@
             </div>
             <div>
               <h4 class="ek yj go kk wm xb">Professionalism</h4>
-              <p>delivering clean code and building reliable systems.</p>
+              <p class="text-left md:text-center">delivering clean code and building reliable systems.</p>
             </div>
           </div>
         </div>
@@ -186,7 +187,7 @@
 
           <!-- About Content -->
           <div class="animate_right jn/2">
-            <h4 class="ek yj mk gb">Who am I?</h4>
+            <h4 class="ek yj mk gb text-left md:text-center">Who am I?</h4>
             <h2 class="fk vj zp pr kk wm qb">Highly resilient and proactive professional who bridges the gap between traditional operations and modern technology.</h2>
             <p class="uo">Driven by a lifelong passion for coding and an innate drive to optimize complex systems, 
               I am a developer who bridges operational logic with scalable software. After earning my Computer Science degree, 
@@ -196,13 +197,6 @@
               and leadership into modern web engineering. Currently mastering the MERN stack, I build robust, secure, 
               and business-focused full-stack applications. For me, development is about turning operational bottlenecks into 
               seamless digital experiences through clean code and reliable database architecture.</p>
-            <a href="https://www.youtube.com/watch?v=IE-6LSI7U6Y" data-fslightbox class="vc wf hg mb">
-              <span class="tc wf xf be dd rg i gh ua">
-                <span class="nf h vc yc vd rg gh qk -ud-z-1"></span>
-                <img src="images/icon-play.svg" alt="Play" />
-              </span>
-              <span class="kk wm">SEE HOW I STAY FOCUSED</span>
-            </a>
           </div>
         </div>
       </div>
@@ -265,12 +259,7 @@
               <ul>
                 <li><a href="#!" class="sc xl vb">Home</a></li>
                 <li><a href="#!" class="sc xl vb">Product</a></li>
-                <li>
-                  <a href="#!" class="sc xl vb">
-                    Careers
-
-                  </a>
-                </li>
+                <li><a href="#!" class="sc xl vb">Careers</a></li>
                 <li><a href="#!" class="sc xl vb">Pricing</a></li>
               </ul>
             </div>
@@ -339,7 +328,7 @@
         </div>
 
         <div class="animate_top">
-          <p>&copy; 2025 Base. All rights reserved. Distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a></p>
+          <p>&copy;  All rights reserved.</p>
         </div>
       </div>
       <!-- Footer Bottom -->
@@ -359,43 +348,7 @@
 
   <!-- ====== Back To Top End ===== -->
 
-  <script>
-    //  Pricing Table
-    const setup = () => {
-      return {
-        isNavOpen: false,
 
-        billPlan: 'monthly',
-
-        plans: [
-          {
-            name: 'Starter',
-            price: {
-              monthly: 29,
-              annually: 29 * 12 - 199,
-            },
-            features: ['400 GB Storaget', 'Unlimited Photos & Videos', 'Exclusive Support'],
-          },
-          {
-            name: 'Growth Plan',
-            price: {
-              monthly: 59,
-              annually: 59 * 12 - 100,
-            },
-            features: ['400 GB Storaget', 'Unlimited Photos & Videos', 'Exclusive Support'],
-          },
-          {
-            name: 'Business',
-            price: {
-              monthly: 139,
-              annually: 139 * 12 - 100,
-            },
-            features: ['400 GB Storaget', 'Unlimited Photos & Videos', 'Exclusive Support'],
-          },
-        ],
-      };
-    };
-  </script>
   <script defer src="bundle.js"></script>
 </body>
 
