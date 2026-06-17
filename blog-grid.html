@@ -5,9 +5,10 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mr. Naveen Joshy -  Web Development services</title>
+  <title>Mr. Naveen Joshy - Web Development services</title>
   <link rel="icon" href="logo.gif">
   <link href="style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 <body x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
@@ -18,29 +19,29 @@
   <!-- ===== Header Start ===== -->
   <header class="g s r vd ya cj" :class="{ 'hh sm _k dj bl ll' : stickyMenu }"
     @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false">
-    <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i">
-      <div class="vd to/4 tc wf yf">
+    <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i @container">
+      <div class="vd to/4 tc wf yf flex flex-col @md:flex-row">
         <href="index.html">
-          <img class="om" src="images/logo-light.png" alt="Logo Light" width="90px"/><span>
-          <img class="xc nm" src="images/logo-dark.png" alt="Logo Dark" width="90px"/><span>
-            <h1 class="kk wm">Naveen Joshy</h1>
-        </a>
+          <img class="om" src="images/logo-light.png" alt="Logo Light" width="70px" height="70px" /><span>
+            <img class="xc nm" src="images/logo-dark.png" alt="Logo Dark" width="70px" height="70px" /><span>
+              <h1 class="kk wm">Naveen Joshy</h1>
+              </a>
 
-        <!-- Hamburger Toggle BTN -->
-        <button class="po rc" @click="navigationOpen = !navigationOpen">
-          <span class="rc i pf re pd">
-            <span class="du-block h q vd yc">
-              <span class="rc i r s eh um tg te rd eb ml jl dl" :class="{ 'ue el': !navigationOpen }"></span>
-              <span class="rc i r s eh um tg te rd eb ml jl fl" :class="{ 'ue qr': !navigationOpen }"></span>
-              <span class="rc i r s eh um tg te rd eb ml jl gl" :class="{ 'ue hl': !navigationOpen }"></span>
-            </span>
-            <span class="du-block h q vd yc lf">
-              <span class="rc eh um tg ml jl el h na r ve yc" :class="{ 'sd dl': !navigationOpen }"></span>
-              <span class="rc eh um tg ml jl qr h s pa vd rd" :class="{ 'sd rr': !navigationOpen }"></span>
-            </span>
-          </span>
-        </button>
-        <!-- Hamburger Toggle BTN -->
+              <!-- Hamburger Toggle BTN -->
+              <button class="po rc" @click="navigationOpen = !navigationOpen">
+                <span class="rc i pf re pd">
+                  <span class="du-block h q vd yc">
+                    <span class="rc i r s eh um tg te rd eb ml jl dl" :class="{ 'ue el': !navigationOpen }"></span>
+                    <span class="rc i r s eh um tg te rd eb ml jl fl" :class="{ 'ue qr': !navigationOpen }"></span>
+                    <span class="rc i r s eh um tg te rd eb ml jl gl" :class="{ 'ue hl': !navigationOpen }"></span>
+                  </span>
+                  <span class="du-block h q vd yc lf">
+                    <span class="rc eh um tg ml jl el h na r ve yc" :class="{ 'sd dl': !navigationOpen }"></span>
+                    <span class="rc eh um tg ml jl qr h s pa vd rd" :class="{ 'sd rr': !navigationOpen }"></span>
+                  </span>
+                </span>
+              </button>
+              <!-- Hamburger Toggle BTN -->
       </div>
 
       <div class="vd wo/4 sd qo f ho oo wf yf" :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen }">
@@ -50,7 +51,7 @@
             <li><a href="index.html#features" class="xl">About Me</a></li>
             <li class="c i" x-data="{ dropdown: false }">
               <a href="#!" class="xl tc wf yf bg" @click.prevent="dropdown = !dropdown"
-                :class="{ 'mk': page === 'blog-grid' || page === 'blog-single' || page === 'signin' || page === 'signup' || page === '404' }">
+                :class="{ 'mk': page === 'projects' || page === 'blog-single' || page === 'signin' || page === 'signup' || page === '404' }">
                 Know More
                 <svg :class="{ 'wh': dropdown }" class="th mm we fd pf" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512">
@@ -61,15 +62,14 @@
 
               <!-- Dropdown Start -->
               <ul class="a" :class="{ 'tc': dropdown }">
-                <li><a href="blog-grid.html" class="xl" :class="{ 'mk': page === 'blog-grid' }">Blog Grid</a></li>
-                <li><a href="blog-single.html" class="xl" :class="{ 'mk': page === 'blog-single' }">Blog Single</a></li>
-                <li><a href="signin.html" class="xl" :class="{ 'mk': page === 'signin' }">Sign In</a></li>
-                <li><a href="signup.html" class="xl" :class="{ 'mk': page === 'signup' }">Sign Up</a></li>
-                <li><a href="404.html" class="xl" :class="{ 'mk': page === '404' }">404</a></li>
+                <li><a href="blog-grid.html" class="xl" :class="{ 'mk': page === 'blog-grid' }">Projects</a></li>
+                <li><a href="#" class="xl" :class="{ 'mk': page === 'signin' }">Testimonials</a></li>
+                <li><a href="#" class="xl" :class="{ 'mk': page === 'signup' }">The Team</a></li>
+                <li><a href="#" class="xl" :class="{ 'mk': page === '404' }">Company</a></li>
               </ul>
               <!-- Dropdown End -->
             </li>
-            <li><a href="index.html#support" class="xl">Support</a></li>
+            <li><a href="iconntact-us.html" class="xl">Contact Me</a></li>
           </ul>
         </nav>
 
@@ -87,13 +87,13 @@
               <!-- Icon Sun -->
               <img class="xc nm" src="images/icon-moon.svg" alt="Moon" />
             </label>
-      </div>
-    </div>
+          </div>
+        </div>
   </header>
 
   <!-- ===== Header End ===== -->
 
-    <main>
+  <main>
     <!-- ===== Blog Grid Start ===== -->
     <section class="ji gp uq">
       <div class="bb ye ki xn vq jb jo">
@@ -102,25 +102,14 @@
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
               <img class="w-full" src="images/blog-01.png" alt="Blog" />
-
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
+                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Know More</a>
               </div>
             </div>
 
             <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>Musharof Chy</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>25 Dec, 2025</p>
-                </div>
-              </div>
               <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">Free advertising for your online business</a>
+                <a href="blog-single.html">Clone of UDEMY Website</a>
               </h4>
             </div>
           </div>
@@ -129,25 +118,14 @@
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
               <img class="w-full" src="images/blog-02.png" alt="Blog" />
-
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
+                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Know More</a>
               </div>
             </div>
 
             <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>Musharof Chy</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>25 Dec, 2025</p>
-                </div>
-              </div>
               <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">9 simple ways to improve your design skills</a>
+                <a href="blog-single.html">Clone of Flipkart Website</a>
               </h4>
             </div>
           </div>
@@ -156,25 +134,14 @@
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
               <img class="w-full" src="images/blog-03.png" alt="Blog" />
-
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
+                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Know More</a>
               </div>
             </div>
 
             <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>Musharof Chy</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>25 Dec, 2025</p>
-                </div>
-              </div>
               <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">Tips to quickly improve your coding speed.</a>
+                <a href="blog-single.html">Clone of ProPros Website</a>
               </h4>
             </div>
           </div>
@@ -182,26 +149,15 @@
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-01.png" alt="Blog" />
-
+              <img class="w-full" src="images/blog-04.png" alt="Blog" />
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
+                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Know More</a>
               </div>
             </div>
 
             <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>Musharof Chy</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>25 Dec, 2025</p>
-                </div>
-              </div>
               <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">Free advertising for your online business</a>
+                <a href="blog-single.html">File Manager</a>
               </h4>
             </div>
           </div>
@@ -209,26 +165,15 @@
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-02.png" alt="Blog" />
-
+              <img class="w-full" src="images/blog-05.png" alt="Blog" />
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
+                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Know More</a>
               </div>
             </div>
 
             <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>Musharof Chy</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>25 Dec, 2025</p>
-                </div>
-              </div>
               <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">9 simple ways to improve your design skills</a>
+                <a href="blog-single.html">Stock Management</a>
               </h4>
             </div>
           </div>
@@ -236,26 +181,15 @@
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-03.png" alt="Blog" />
-
+              <img class="w-full" src="images/blog-06.png" alt="Blog" />
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
+                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Know More</a>
               </div>
             </div>
 
             <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>Musharof Chy</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>25 Dec, 2025</p>
-                </div>
-              </div>
               <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">Tips to quickly improve your coding speed.</a>
+                <a href="blog-single.html">POS Billing</a>
               </h4>
             </div>
           </div>
@@ -282,32 +216,37 @@
             <ul class="tc wf cg">
               <li>
                 <a href="https://www.facebook.com/naveenjoshy">
-                  <img class="om footer-social-logo" src="images/fb-light.png" alt="Facebook" width="90px"/><span>
-                  <img class="xc nm footer-social-logo" src="images/fb-dark.png" alt="Facebook" width="90px"/><span>
+                  <img class="om footer-social-logo" src="images/fb-light.png" alt="Facebook" width="90px" /><span>
+                    <img class="xc nm footer-social-logo" src="images/fb-dark.png" alt="Facebook" width="90px" /><span>
                 </a>
               </li>
               <li>
                 <a href="https://www.instagram.com/naveenjoshy/">
-                  <img class="om footer-social-logo" src="images/insta-light.png" alt="Facebook" width="90px"/><span>
-                  <img class="xc nm footer-social-logo" src="images/insta-dark.png" alt="Facebook" width="90px"/><span>
+                  <img class="om footer-social-logo" src="images/insta-light.png" alt="Facebook" width="90px" /><span>
+                    <img class="xc nm footer-social-logo" src="images/insta-dark.png" alt="Facebook"
+                      width="90px" /><span>
                 </a>
               </li>
               <li>
                 <a href="https://x.com/naveenjoshy64">
-                  <img class="om footer-social-logo" src="images/twitter-light.png" alt="Facebook" width="90px"/><span>
-                  <img class="xc nm footer-social-logo" src="images/twitter-dark.png" alt="Facebook" width="90px"/><span>
+                  <img class="om footer-social-logo" src="images/twitter-light.png" alt="Facebook" width="90px" /><span>
+                    <img class="xc nm footer-social-logo" src="images/twitter-dark.png" alt="Facebook"
+                      width="90px" /><span>
                 </a>
               </li>
               <li>
                 <a href="https://github.com/naveenjoshy">
-                  <img class="om footer-social-logo" src="images/github-light.png" alt="Facebook" width="90px"/><span>
-                  <img class="xc nm footer-social-logo" src="images/github-dark.png" alt="Facebook" width="90px"/><span>
+                  <img class="om footer-social-logo" src="images/github-light.png" alt="Facebook" width="90px" /><span>
+                    <img class="xc nm footer-social-logo" src="images/github-dark.png" alt="Facebook"
+                      width="90px" /><span>
                 </a>
               </li>
               <li>
                 <a href="https://www.linkedin.com/in/naveen-joshy64/">
-                  <img class="om footer-social-logo" src="images/linkedin-light.png" alt="Facebook" width="90px"/><span>
-                  <img class="xc nm footer-social-logo" src="images/linkedin-dark.png" alt="Facebook" width="90px"/><span>
+                  <img class="om footer-social-logo" src="images/linkedin-light.png" alt="Facebook"
+                    width="90px" /><span>
+                    <img class="xc nm footer-social-logo" src="images/linkedin-dark.png" alt="Facebook"
+                      width="90px" /><span>
                 </a>
               </li>
             </ul>
@@ -320,12 +259,7 @@
               <ul>
                 <li><a href="#!" class="sc xl vb">Home</a></li>
                 <li><a href="#!" class="sc xl vb">Product</a></li>
-                <li>
-                  <a href="#!" class="sc xl vb">
-                    Careers
-
-                  </a>
-                </li>
+                <li><a href="#!" class="sc xl vb">Careers</a></li>
                 <li><a href="#!" class="sc xl vb">Pricing</a></li>
               </ul>
             </div>
@@ -358,7 +292,8 @@
 
               <form action="#!" method="#!">
                 <div class="i">
-                  <input type="text" placeholder="Email address" class="vd sm _g ch pm vk xm rg gm dm dn gi mi" />
+                  <input type="text" placeholder="Email address" id="news-letter-mail"
+                    class="vd sm _g ch pm vk xm rg gm dm dn gi mi" />
 
                   <button class="h q fi">
                     <svg class="th vm ul" width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -394,7 +329,7 @@
         </div>
 
         <div class="animate_top">
-          <p>&copy; 2025 Base. All rights reserved.</p>
+          <p>&copy; All rights reserved.</p>
         </div>
       </div>
       <!-- Footer Bottom -->
@@ -414,43 +349,7 @@
 
   <!-- ====== Back To Top End ===== -->
 
-  <script>
-    //  Pricing Table
-    const setup = () => {
-      return {
-        isNavOpen: false,
 
-        billPlan: 'monthly',
-
-        plans: [
-          {
-            name: 'Starter',
-            price: {
-              monthly: 29,
-              annually: 29 * 12 - 199,
-            },
-            features: ['400 GB Storaget', 'Unlimited Photos & Videos', 'Exclusive Support'],
-          },
-          {
-            name: 'Growth Plan',
-            price: {
-              monthly: 59,
-              annually: 59 * 12 - 100,
-            },
-            features: ['400 GB Storaget', 'Unlimited Photos & Videos', 'Exclusive Support'],
-          },
-          {
-            name: 'Business',
-            price: {
-              monthly: 139,
-              annually: 139 * 12 - 100,
-            },
-            features: ['400 GB Storaget', 'Unlimited Photos & Videos', 'Exclusive Support'],
-          },
-        ],
-      };
-    };
-  </script>
   <script defer src="bundle.js"></script>
 </body>
 

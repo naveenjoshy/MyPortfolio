@@ -62,6 +62,7 @@ button,
 [type='reset'],
 [type='submit']{
   -webkit-appearance: button; 
+  appearance: button;
   background-color: transparent; 
   background-image: none; 
 }
@@ -73,6 +74,10 @@ button,
 }
 progress{
   vertical-align: baseline;
+}
+.input-group span{
+  color:red;
+  font-size:1rem;
 }
 blockquote,
 dl,

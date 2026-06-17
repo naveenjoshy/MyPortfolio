@@ -9,6 +9,8 @@
   <link rel="icon" href="logo.gif">
   <link href="style.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script defer src="bundle.js"></script>
+  <script defer src="validate.js"></script>
 </head>
 
 <body x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
@@ -94,118 +96,134 @@
   <!-- ===== Header End ===== -->
 
   <main>
-    <!-- ===== Hero Start ===== -->
-    <section class="gj do ir hj sp jr i pg">
-      <!-- Hero Images -->
-      <div class="xc fn zd/2 2xl:ud-w-187.5 bd 2xl:ud-h-171.5 h q r">
-        <img src="images/shape-01.svg" alt="shape" class="xc 2xl:ud-block h t -ud-left-[10%] ua" />
-        <img src="images/shape-02.svg" alt="shape" class="xc 2xl:ud-block h u p va" />
-        <img src="images/shape-03.svg" alt="shape" class="xc 2xl:ud-block h v w va" />
-        <img src="images/shape-04.svg" alt="shape" class="h q r" />
-        <img src="images/hero.png" alt="Naveen Joshy" class="h q r ua" fetchpriority="high" />
+    <!-- ===== Contact Start ===== -->
+    <section id="support" class="i pg fh rm ji gp uq">
+      <!-- Bg Shapes -->
+
+      <!-- Section Title Start -->
+      <div
+        x-data="{ sectionTitle: `Let’s Stay Connected`, sectionTitleText: ` Submit your queries to stay connected - looking forward to hear from you.`}">
+        <div class="animate_top bb ze rj ki xn vq">
+          <h2 x-text="sectionTitle" class="fk vj pr kk wm on/5 gq/2 bb _b">
+          </h2>
+          <p class="bb on/5 wo/5 hq" x-text="sectionTitleText"></p>
+        </div>
+
+
       </div>
+      <!-- Section Title End -->
 
-      <!-- Hero Content -->
-      <div class="bb ze ki xn 2xl:ud-px-0">
-        <div class="tc _o">
-          <div class="animate_left jn/2">
-            <h1 class="fk vj zp or kk wm wb">Naveen Joshy</h1>
-            <p class="fq text-center sm:text-left">
-              Full-Stack Developer specializing in the MERN ecosystem. I bridge the gap between pixel-perfect user
-              interfaces and secure, high-performance server architecture.
-              Passionate about clean code, efficient databases, and smooth animations.
-            </p>
+      <div class="i va bb ye ki xn wq jb mo">
+        <div class="tc uf sn tf rn un zf xl:gap-10">
+          <div class="animate_top w-full mn/5 to/3 vk sg hh sm yh rq i pg">
+            <!-- Bg Shapes -->
 
-            <div class="tc tf yo zf mb">
-              <a href="#!" class="ek jk lk gh gi hi rg ml il vc _d _l">Get Started Now</a>
+            <div class="fb">
+              <h4 class="wj kk wm cc">Email Address</h4>
+              <p><a href="#!">naveenjoshy64@gmail.com</a></p>
             </div>
+            <div class="fb">
+              <h4 class="wj kk wm cc">Office Location</h4>
+              <p>Kochi, Kerala</p>
+            </div>
+            <div class="fb">
+              <h4 class="wj kk wm cc">Phone Number</h4>
+              <p><a href="#!">+91 9400489149</a></p>
+            </div>
+            <div class="fb">
+              <h4 class="wj kk wm cc">Enquiries</h4>
+              <p><a href="#!">naveenjoshy65@gmail.com</a></p>
+            </div>
+
+            <span class="rc nd rh tm lc fb"></span>
+
+            <div>
+              <h4 class="wj kk wm qb">Social Media</h4>
+              <ul class="tc wf fg">
+                <li>
+                  <a href="https://www.facebook.com/naveenjoshy" class="c tc wf xf ie ld rg ml il tl">
+                    <img class="om footer-social-logo" src="images/fb-light.png" alt="Facebook" width="90px" /><span>
+                      <img class="xc nm footer-social-logo" src="images/fb-dark.png" alt="Facebook"
+                        width="90px" /><span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.instagram.com/naveenjoshy/" class="c tc wf xf ie ld rg ml il tl">
+                    <img class="om footer-social-logo" src="images/insta-light.png" alt="Facebook" width="90px" /><span>
+                      <img class="xc nm footer-social-logo" src="images/insta-dark.png" alt="Facebook"
+                        width="90px" /><span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://x.com/naveenjoshy64" class="c tc wf xf ie ld rg ml il tl">
+                    <img class="om footer-social-logo" src="images/twitter-light.png" alt="Facebook"
+                      width="90px" /><span>
+                      <img class="xc nm footer-social-logo" src="images/twitter-dark.png" alt="Facebook"
+                        width="90px" /><span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/naveen-joshy64/" class="c tc wf xf ie ld rg ml il tl">
+                    <img class="om footer-social-logo" src="images/linkedin-light.png" alt="Facebook"
+                      width="90px" /><span>
+                      <img class="xc nm footer-social-logo" src="images/linkedin-dark.png" alt="Facebook"
+                        width="90px" /><span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="animate_top w-full nn/5 vo/3 vk sg hh sm yh tq">
+            <form>
+              <div class="tc sf yo ap zf ep qb">
+                <div class="vd to/2 input-group">
+                  <label class="rc ac" for="fullname">Name</label>
+                  <input type="text" name="fullname" id="name" onkeyup="validateName()" placeholder="Enter Name"
+                    class=" vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi">
+                  <span id="name-error"></span>
+                </div>
+                <div class="vd to/2 input-group">
+                  <label class="rc ac" for="email">Email address</label>
+                  <input type="email" name="email" id="email" onkeyup="validateMail()" placeholder="example@gmail.com"
+                    class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi" />
+                  <span id="mail-error"></span>
+                </div>
+              </div>
+
+              <div class=" tc sf yo ap zf ep qb">
+                <div class="vd to/2 input-group">
+                  <label class="rc ac" for="phone"></label>
+                  <input type="text" name="phone" id="phone" onkeyup="validatePhone()" placeholder="+91 00000 12345"
+                    class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi" />
+                  <span id="phone-error"></span>
+                </div>
+
+                <div class="vd to/2 input-group">
+                  <label class="rc ac" for="subject">Subject</label>
+                  <input type="text" for="subject" id="subject" placeholder="Type your subject"
+                    class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi" />
+                  <span id="subject-error"></span>
+                </div>
+              </div>
+
+              <div class="fb input-group">
+                <label class="rc ac" for="message">Message</label>
+                <textarea placeholder=" Message" rows="5" name="message" id="message"
+                  class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 ci"></textarea>
+                <span id="message-error"></span>
+              </div>
+
+              <div class="tc xf">
+                <button class="vc rg lk gh ml il hi gi _l" id="send-button">Send Message</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </section>
-    <!-- ===== Hero End ===== -->
+    <!-- ===== Contact End ===== -->
 
-    <!-- ===== Small Features Start ===== -->
-    <section id="features">
-      <div class="bb ze ki yn 2xl:ud-px-12.5">
-        <div class="tc uf zo xf ap zf bp mq">
-          <!-- Small Features Item -->
-          <div class="animate_top kn to/3 tc cg oq">
-            <div class="tc wf xf cf ae cd rg mh">
-              <img src="images/icon-01.svg" alt="Icon" />
-            </div>
-            <div>
-              <h4 class="ek yj go kk wm xb">Constant Learner</h4>
-              <p class="text-left md:text-center">I code to build, but I learn to endure.</p>
-            </div>
-          </div>
-
-          <!-- Small Features Item -->
-          <div class="animate_top kn to/3 tc cg oq">
-            <div class="tc wf xf cf ae cd rg nh">
-              <img src="images/icon-02.svg" alt="Icon" />
-            </div>
-            <div>
-              <h4 class="ek yj go kk wm xb">Highly Curious</h4>
-              <p class="text-left md:text-center">Each line of code is a new opportunity.</p>
-            </div>
-          </div>
-
-          <!-- Small Features Item -->
-          <div class="animate_top kn to/3 tc cg oq">
-            <div class="tc wf xf cf ae cd rg oh">
-              <img src="images/icon-03.svg" alt="Icon" />
-            </div>
-            <div>
-              <h4 class="ek yj go kk wm xb">Professionalism</h4>
-              <p class="text-left md:text-center">delivering clean code and building reliable systems.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ===== Small Features End ===== -->
-
-    <!-- ===== About Start ===== -->
-    <section class="ji gp uq 2xl:ud-py-35 pg">
-      <div class="bb ze ki xn wq">
-        <div class="tc wf gg qq">
-          <!-- About Images -->
-          <div class="animate_left xc gn gg jn/2 i">
-            <div>
-              <img src="images/shape-05.svg" alt="Shape" class="h -ud-left-5 x" />
-              <img src="images/about-01.jpeg" alt="About" class="ib" />
-              <img src="images/about-02.jpeg" alt="About" />
-            </div>
-            <div>
-              <img src="images/shape-06.svg" alt="Shape" />
-              <img src="images/about-03.jpeg" alt="About" class="ob gb" />
-              <img src="images/shape-07.svg" alt="Shape" class="bb" />
-            </div>
-          </div>
-
-          <!-- About Content -->
-          <div class="animate_right jn/2">
-            <h4 class="ek yj mk gb text-left md:text-center">Who am I?</h4>
-            <h2 class="fk vj zp pr kk wm qb">Highly resilient and proactive professional who bridges the gap between
-              traditional operations and modern technology.</h2>
-            <p class="uo">Driven by a lifelong passion for coding and an innate drive to optimize complex systems,
-              I am a developer who bridges operational logic with scalable software. After earning my Computer Science
-              degree,
-              I spent 12 years driving efficiency in the cooperative banking sector. Rather than just managing
-              operations,
-              I used my technical background to independently engineer custom software that automated and streamlined
-              core
-              financial workflows. Today, I am channeling that decade of deep domain expertise, data security intuition,
-              and leadership into modern web engineering. Currently mastering the MERN stack, I build robust, secure,
-              and business-focused full-stack applications. For me, development is about turning operational bottlenecks
-              into
-              seamless digital experiences through clean code and reliable database architecture.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ===== About End ===== -->
   </main>
   <!-- ===== Footer Start ===== -->
   <footer>
@@ -348,7 +366,7 @@
   <!-- ===== Footer End ===== -->
 
   <!-- ====== Back To Top Start ===== -->
-  <button class="xc wf xf ie ld vg sr gh tr g sa ta _a" @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+  <button class="xc wf xf ie ld vg sr gh tr g sa ta _a" @click="window.scrollTo({top: 0, behavior: ' smooth'})"
     @scroll.window="scrollTop = (window.pageYOffset > 50) ? true : false" :class="{ 'uc' : scrollTop }">
     <svg class="uh se qd" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
       <path
@@ -359,7 +377,7 @@
   <!-- ====== Back To Top End ===== -->
 
 
-  <script defer src="bundle.js"></script>
+
 </body>
 
 </html>
