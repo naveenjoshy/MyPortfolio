@@ -79,6 +79,10 @@ progress{
   color:red;
   font-size:1rem;
 }
+.message-success span{
+  color:greenyellow;
+  font-size:1rem;
+}
 blockquote,
 dl,
 dd,

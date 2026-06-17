@@ -175,17 +175,17 @@
           </div>
 
           <div class="animate_top w-full nn/5 vo/3 vk sg hh sm yh tq">
-            <form>
+            <form id="contactForm">
               <div class="tc sf yo ap zf ep qb">
                 <div class="vd to/2 input-group">
                   <label class="rc ac" for="fullname">Name</label>
-                  <input type="text" name="fullname" id="name" onkeyup="validateName()" placeholder="Enter Name"
+                  <input type="text" name="fullname" id="name" placeholder="Enter Name"
                     class=" vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi">
                   <span id="name-error"></span>
                 </div>
                 <div class="vd to/2 input-group">
                   <label class="rc ac" for="email">Email address</label>
-                  <input type="email" name="email" id="email" onkeyup="validateMail()" placeholder="example@gmail.com"
+                  <input type="email" name="email" id="email" placeholder="example@gmail.com"
                     class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi" />
                   <span id="mail-error"></span>
                 </div>
@@ -193,8 +193,8 @@
 
               <div class=" tc sf yo ap zf ep qb">
                 <div class="vd to/2 input-group">
-                  <label class="rc ac" for="phone"></label>
-                  <input type="text" name="phone" id="phone" onkeyup="validatePhone()" placeholder="+91 00000 12345"
+                  <label class="rc ac" for="phone">Phone Number</label>
+                  <input type="text" name="phone" id="phone" placeholder="94000 12345"
                     class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi" />
                   <span id="phone-error"></span>
                 </div>
@@ -215,7 +215,9 @@
               </div>
 
               <div class="tc xf">
-                <button class="vc rg lk gh ml il hi gi _l" id="send-button">Send Message</button>
+                <button type=" button" class="vc rg lk gh ml il hi gi _l" id="send-button" onclick="validateForm()">
+                  Send Message
+                </button>
               </div>
             </form>
           </div>
