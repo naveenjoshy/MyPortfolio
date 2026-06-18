@@ -76,40 +76,200 @@ progress{
   vertical-align: baseline;
 }
 .input-group span{
-  color:red;
-  font-size:1rem;
+color: #ff6b6b; 
+font-size: 0.85rem; 
+display: block; 
+margin-top: 0.25rem;
+
 }
 .message-success span{
   color:greenyellow;
   font-size:1rem;
 }
-/* Centered, responsive success message shown on top of the page */
-#success-message{
-  position: relative;
-  left: 50%;
-  top: 10%;
-  transform: translateX(-50%);
-  width: min(90%, 420px);
-  max-width: 95%;
-  padding-top:2em;
-  color: #dee6d9; /* light green */
-  border-radius: 8px;
-  text-align: center;
-  font-size: 0.95rem;
-  font-weight: 700;
-  font-size: 1.2rem;
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+
+
+
+/* --- Glow Configurations --- */
+
+/* Neutral/Active input focus glow */
+.field-container input:focus,
+.field-container textarea:focus {
+  outline: none;
+  border-color: #d1ffb3 !important;
+  box-shadow: 0 0 10px rgba(209, 255, 179, 0.4);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-@media (max-width: 420px){
+/* Error state focus glow (Turns light red if invalid) */
+.field-container input[style*="border-color: rgb(255, 107, 107)"]:focus,
+.field-container textarea[style*="border-color: rgb(255, 107, 107)"]:focus {
+  border-color: #ff6b6b !important;
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.4);
+}
+
+
+/* --- Green Checkmark Icon with Smooth Animation --- */
+
+.field-container {
+  position: relative;
+}
+
+.valid-check {
+  position: absolute;
+  right: 15px;
+  top: 38px;
+  color: #4cd964; /* Changed to green */
+  font-weight: bold;
+  font-size: 1.1rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.6) translateY(5px);
+  transition: opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              visibility 0.3s;
+  pointer-events: none;
+}
+
+/* Stretches textarea checkmark position down slightly */
+.field-container textarea ~ .valid-check {
+  top: 38px;
+}
+
+/* CSS Transition Activation Trigger */
+.field-container.is-valid .valid-check {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateY(0);
+}
+
+
+/* --- Tooltip Layout & Mobile Responsive Engine --- */
+
+.submit-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Fallback button styles (applied if Tailwind utilities are missing) */
+#form-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(90deg, #2563eb 0%, #6366f1 100%); /* blue -> indigo */
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px rgba(99,102,241,0.15);
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+#form-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+#form-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(99,102,241,0.2);
+}
+
+/* Desktop Tooltip Position (Top Centered) */
+.submit-tooltip {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #181c31;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  border: 1px solid rgba(78, 107, 255, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.submit-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #181c31 transparent transparent transparent;
+}
+
+.submit-wrapper:hover #form-submit-btn:disabled ~ .submit-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile Media Query Viewport Overrides (Screens under 576px) */
+@media (max-width: 576px) {
+  .submit-wrapper {
+    display: block;
+    width: 100%;
+  }
+
+  #form-submit-btn {
+    width: 100%;
+  }
+
+  /* Flips the tooltip to display UNDER the button to avoid cut-offs */
+  .submit-tooltip {
+    bottom: auto;
+    top: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: normal;
+    width: 90%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  /* Flips the arrow direction upward */
+  .submit-tooltip::after {
+    top: auto;
+    bottom: 100%;
+    border-color: transparent transparent #181c31 transparent;
+  }
+}
+
+
+
+/* Centered, responsive success message shown on center of screen */
+#success-message{
+  position: sticky;
+  left: 50%;
+  width: min(90%, 420px);
+  padding: 1.5rem 1.25rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 100%;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;   /* Stacks elements vertically */
+  align-items: center;      /* Centers items horizontally */
+  justify-content: center;
+}
+
+@media (max-width: 480px){
   #success-message{
-    top: 6vh;
-    font-size: 0.9rem;
-    padding: 0.5rem 0.75rem;
+    width: 85%;
+    left: 20%;
+    font-size: 1.2rem;
+    padding-top:20%;
+    font-size: 0.95rem;
   }
 }
 blockquote,

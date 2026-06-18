@@ -1,95 +1,238 @@
+document.addEventListener('DOMContentLoaded', () => {
+  // Regex Validation Rules
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const nameRegex = /^[a-zA-Z\s'-]{2,}$/;
+  const phoneRegex = /^\+?[0-9\s-]{7,15}$/; 
 
-var nameError=document.getElementById('name-error');
-var mailError=document.getElementById('mail-error');
-var phoneError=document.getElementById('phone-error');
-var subjectError=document.getElementById('subject-error');
-var messageError=document.getElementById('message-error');
+  // Track which fields have been clicked/focused into at least once
+  const visitedFields = new Set();
+  const requiredFieldIds = ['name', 'email', 'phone', 'subject', 'message'];
 
+  // --- Helper UI Functions ---
+  function setError(inputElement, errorElement, message) {
+    if (errorElement) errorElement.textContent = message;
+    inputElement.style.borderColor = '#ff6b6b';
+    // Remove checkmark indicator if error validation states drop down
+    inputElement.closest('.field-container')?.classList.remove('is-valid');
+  }
 
-
-function validateForm() {
-    nameError.innerHTML = '';
-    mailError.innerHTML = '';
-    phoneError.innerHTML = '';
-    subjectError.innerHTML = '';
-    messageError.innerHTML = '';
-
-    var isValid = true;
-
-    var name = document.getElementById('name').value.trim();
-    var phone = document.getElementById('phone').value.trim();
-    var mailId = document.getElementById('email').value.trim();
-    var subject = document.getElementById('subject').value.trim();
-    var message = document.getElementById('message').value.trim();
-
-    // 1. Name Validation
-
-    if (name.length === 0) {
-        nameError.innerHTML = 'Name is required';
-        isValid = false;
-    } else if (!name.match(/^[a-zA-Z\s]+$/)) {
-        nameError.innerHTML = 'Enter a valid name (letters only)';
-        isValid = false;
-    }
-    // 2. Email Validation
+  function clearError(inputElement, errorElement, isCorrected = false) {
+    if (errorElement) errorElement.textContent = '';
+    inputElement.style.borderColor = isCorrected ? '#d1ffb3' : '';
     
-    if (mailId.length === 0) {
-        mailError.innerHTML = 'Email Id is required';
-        isValid = false;
-    } else if (!mailId.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/)) {
-        mailError.innerHTML = 'Mail Id should be in correct format';
-        isValid = false;   
+    // Toggle active checkmark visibility css state hooks
+    if (isCorrected) {
+      inputElement.closest('.field-container')?.classList.add('is-valid');
+    } else {
+      inputElement.closest('.field-container')?.classList.remove('is-valid');
+    }
+  }
+
+  // ==========================================
+  // FIELD VALIDATION FUNCTIONS (Return true if valid)
+  // ==========================================
+  function validateName() {
+    const input = document.getElementById('name');
+    const error = document.getElementById('name-error');
+    if (!input) return true;
+    const val = input.value.trim();
+    if (val === '') { setError(input, error, 'Name is required.'); return false; }
+    else if (!nameRegex.test(val)) { setError(input, error, 'Name must contain only letters.'); return false; }
+    else { clearError(input, error, true); return true; }
+  }
+
+  function validateEmail() {
+    const input = document.getElementById('email');
+    const error = document.getElementById('mail-error');
+    if (!input) return true;
+    const val = input.value.trim();
+    if (val === '') { setError(input, error, 'Email address is required.'); return false; }
+    else if (!emailRegex.test(val)) { setError(input, error, 'Please enter a valid email address.'); return false; }
+    else { clearError(input, error, true); return true; }
+  }
+
+  function validatePhone() {
+    const input = document.getElementById('phone');
+    const error = document.getElementById('phone-error');
+    if (!input) return true;
+    const val = input.value.trim();
+    if (val === '') { setError(input, error, 'Phone number is required.'); return false; }
+    else if (!phoneRegex.test(val)) { setError(input, error, 'Enter a valid phone number.'); return false; }
+    else { clearError(input, error, true); return true; }
+  }
+
+  function validateSubject() {
+    const input = document.getElementById('subject');
+    const error = document.getElementById('subject-error');
+    if (!input) return true;
+    const val = input.value.trim();
+    if (val === '') { setError(input, error, 'Subject is required.'); return false; }
+    else if (val.length < 4) { setError(input, error, 'Subject must be at least 4 characters.'); return false; }
+    else { clearError(input, error, true); return true; }
+  }
+
+  function validateMessage() {
+    const input = document.getElementById('message');
+    const error = document.getElementById('message-error');
+    if (!input) return true;
+    const val = input.value.trim();
+    if (val === '') { setError(input, error, 'Message text is required.'); return false; }
+    else if (val.length < 10) { setError(input, error, 'Your message must be at least 10 characters.'); return false; }
+    else { clearError(input, error, true); return true; }
+  }
+
+  // ==========================================
+  // REAL-TIME ACTIONS & INPUT FORMATTING ENGINE
+  // ==========================================
+  const nameInp = document.getElementById('name');
+  const nameErr = document.getElementById('name-error');
+  if (nameInp) {
+    nameInp.addEventListener('blur', validateName);
+    nameInp.addEventListener('input', () => { if (nameRegex.test(nameInp.value.trim()) || nameInp.value.trim() === '') clearError(nameInp, nameErr); });
+  }
+
+  const mailInp = document.getElementById('email');
+  const mailErr = document.getElementById('mail-error');
+  if (mailInp) {
+    mailInp.addEventListener('blur', validateEmail);
+    mailInp.addEventListener('input', () => { if (emailRegex.test(mailInp.value.trim()) || mailInp.value.trim() === '') clearError(mailInp, mailErr); });
+  }
+
+  const phoneInp = document.getElementById('phone');
+  const phoneErr = document.getElementById('phone-error');
+  if (phoneInp) {
+    phoneInp.addEventListener('blur', validatePhone);
+    phoneInp.addEventListener('input', () => {
+      let rawValue = phoneInp.value, hasPlus = rawValue.startsWith('+'), digits = rawValue.replace(/\D/g, ''), formattedValue = '';
+      if (hasPlus) {
+        formattedValue += '+';
+        if (digits.length > 0) {
+          let ccLength = digits.length > 10 ? digits.length - 10 : 2;
+          ccLength = Math.min(ccLength, 3);
+          let countryCode = digits.substring(0, ccLength), rest = digits.substring(ccLength);
+          formattedValue += countryCode;
+          if (rest.length > 0) formattedValue += ' ' + rest.substring(0, 5);
+          if (rest.length > 5) formattedValue += ' ' + rest.substring(5, 10);
+        }
+      } else {
+        if (digits.length > 0) formattedValue += digits.substring(0, 5);
+        if (digits.length > 5) formattedValue += ' ' + digits.substring(5, 10);
+        if (digits.length > 10) formattedValue += ' ' + digits.substring(10, 15);
+      }
+      phoneInp.value = formattedValue;
+      if (phoneRegex.test(phoneInp.value.trim()) || phoneInp.value.trim() === '') clearError(phoneInp, phoneErr);
+    });
+  }
+
+  const subInp = document.getElementById('subject');
+  const subErr = document.getElementById('subject-error');
+  if (subInp) {
+    subInp.addEventListener('blur', validateSubject);
+    subInp.addEventListener('input', () => { if (subInp.value.trim().length >= 4 || subInp.value.trim() === '') clearError(subInp, subErr); });
+  }
+
+  const msgInp = document.getElementById('message');
+  const msgErr = document.getElementById('message-error');
+  if (msgInp) {
+    msgInp.addEventListener('blur', validateMessage);
+    msgInp.addEventListener('input', () => { if (msgInp.value.trim().length >= 10 || msgInp.value.trim() === '') clearError(msgInp, msgErr); });
+  }
+
+  // ==========================================
+  // SUBMISSION LOGIC PIPELINE
+  // ==========================================
+  const parentForm = document.getElementById('contact-form');
+  const successPopup = document.getElementById('success-message');
+  
+  if (parentForm) {
+    const submitBtn = document.getElementById('form-submit-btn');
+
+    // Button Status Verification Router
+    function checkFormStatus() {
+      if (!submitBtn) return;
+      
+      const allFieldsVisited = requiredFieldIds.every(id => visitedFields.has(id));
+
+      const isNameValid = nameRegex.test(nameInp?.value.trim() || '');
+      const isEmailValid = emailRegex.test(mailInp?.value.trim() || '');
+      const isPhoneValid = phoneRegex.test(phoneInp?.value.trim() || '');
+      const isSubjectValid = (subInp?.value.trim().length || 0) >= 4;
+      const isMessageValid = (msgInp?.value.trim().length || 0) >= 10;
+
+      if (allFieldsVisited && isNameValid && isEmailValid && isPhoneValid && isSubjectValid && isMessageValid) {
+        submitBtn.disabled = false;
+      } else {
+        submitBtn.disabled = true;
+      }
     }
 
-    // 3. Phone Validation
-
-    if (phone.length === 0) {
-        phoneError.innerHTML = 'Phone Number is required';
-        isValid = false;
-    } else if (!phone.match(/^\d{10}$/)) { // Checks for a standard 10-digit number
-        phoneError.innerHTML = 'Enter a valid 10-digit phone number';
-        isValid = false;
-    }
-
-    // 4. Subject Validation
-
-    if (subject.length === 0) {
-        subjectError.innerHTML = 'Subject is required';
-        isValid = false;
-    }
-
-    // 5. Message Validation
-    
-    if (message.length === 0) {
-        messageError.innerHTML = 'Message cannot be empty';
-        isValid = false;
-    }
-    if (isValid) {
-        document.getElementById('contactForm').reset();
-        
-        alert("Message Send submitted successfully! \n You will be hearing from me soon");
-        var successEl = document.getElementById('success-message') || document.getElementById('show-Message');
-        if (successEl) successEl.innerHTML = "Thank you for your response...!";
-
-    }
-    return isValid;
-}
-
-// Prevent the form from reloading the page and wire up button safely
-document.addEventListener('DOMContentLoaded', function() {
-    var form = document.getElementById('contactForm');
-    var sendBtn = document.getElementById('send-button');
-
-    if (sendBtn) {
-        // ensure button is non-submitting
-        try { sendBtn.type = 'button'; } catch (e) {}
-        sendBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            var valid = validateForm();
-            if (valid) {
-                var successEl = document.getElementById('success-message') || document.getElementById('show-Message');
-                if (successEl) successEl.innerHTML = "Thank you for your response...!";
-            }
+    // Assign operational focus tracking elements logic
+    requiredFieldIds.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.addEventListener('focus', () => {
+          visitedFields.add(id);
+          checkFormStatus();
         });
-    }
+        element.addEventListener('input', checkFormStatus);
+        element.addEventListener('blur', checkFormStatus);
+      }
+    });
+
+    // Enforce initial clamp verification on load setup
+    checkFormStatus();
+
+    parentForm.addEventListener('submit', (event) => {
+      event.preventDefault(); // Lock native page transitions/reloads
+
+      const isNameValid = validateName();
+      const isEmailValid = validateEmail();
+      const isPhoneValid = validatePhone();
+      const isSubjectValid = validateSubject();
+      const isMessageValid = validateMessage();
+
+      if (!isNameValid || !isEmailValid || !isPhoneValid || !isSubjectValid || !isMessageValid) {
+        submitBtn.disabled = true;
+      } else {
+        if (successPopup) {
+          // 1. Structural DOM node reveal
+          successPopup.classList.remove('hidden');
+          successPopup.classList.add('flex'); 
+          
+          // 2. Queue animated sliding step updates to bypass transition paint issues
+          setTimeout(() => {
+            successPopup.classList.add('opacity-100', 'translate-x-0', 'translate-y-0');
+            successPopup.classList.remove('opacity-0', '-translate-x-4', 'md:-translate-y-2');
+          }, 10);
+          
+          parentForm.reset();
+          visitedFields.clear(); 
+          
+          requiredFieldIds.forEach(id => {
+            const inputEl = document.getElementById(id);
+            if (inputEl) {
+              inputEl.style.borderColor = '';
+              inputEl.closest('.field-container')?.classList.remove('is-valid');
+            }
+          });
+
+          checkFormStatus(); // Re-lock submit button configuration array states
+
+          // 3. Smoothly reverse transition states out after 4 seconds complete
+          setTimeout(() => {
+            successPopup.classList.remove('opacity-100', 'translate-x-0', 'translate-y-0');
+            successPopup.classList.add('opacity-0', '-translate-x-4', 'md:-translate-y-2');
+            
+            setTimeout(() => {
+              successPopup.classList.remove('flex');
+              successPopup.classList.add('hidden');
+            },
+              500);
+          },
+            4000);
+        }
+      }
+    });
+  }
 });
+              
