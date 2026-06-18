@@ -23,27 +23,27 @@
     @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false">
     <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i @container">
       <div class="vd to/4 tc wf yf flex flex-col @md:flex-row">
-        <href="index.html">
-          <img class="om" src="images/logo-light.png" alt="Logo Light" width="70px" height="70px" /><span>
-            <img class="xc nm" src="images/logo-dark.png" alt="Logo Dark" width="70px" height="70px" /><span>
-              <h1 class="kk wm">Naveen Joshy</h1>
-              </a>
+        <a href="index.html">
+          <img class="om" src="images/logo-light.png" alt="Logo Light" width="70" height="70" />
+          <img class="xc nm" src="images/logo-dark.png" alt="Logo Dark" width="70" height="70" />
+          <h1 class="kk wm">Naveen Joshy</h1>
+        </a>
 
-              <!-- Hamburger Toggle BTN -->
-              <button class="po rc" @click="navigationOpen = !navigationOpen">
-                <span class="rc i pf re pd">
-                  <span class="du-block h q vd yc">
-                    <span class="rc i r s eh um tg te rd eb ml jl dl" :class="{ 'ue el': !navigationOpen }"></span>
-                    <span class="rc i r s eh um tg te rd eb ml jl fl" :class="{ 'ue qr': !navigationOpen }"></span>
-                    <span class="rc i r s eh um tg te rd eb ml jl gl" :class="{ 'ue hl': !navigationOpen }"></span>
-                  </span>
-                  <span class="du-block h q vd yc lf">
-                    <span class="rc eh um tg ml jl el h na r ve yc" :class="{ 'sd dl': !navigationOpen }"></span>
-                    <span class="rc eh um tg ml jl qr h s pa vd rd" :class="{ 'sd rr': !navigationOpen }"></span>
-                  </span>
-                </span>
-              </button>
-              <!-- Hamburger Toggle BTN -->
+        <!-- Hamburger Toggle BTN -->
+        <button class="po rc" @click="navigationOpen = !navigationOpen">
+          <span class="rc i pf re pd">
+            <span class="du-block h q vd yc">
+              <span class="rc i r s eh um tg te rd eb ml jl dl" :class="{ 'ue el': !navigationOpen }"></span>
+              <span class="rc i r s eh um tg te rd eb ml jl fl" :class="{ 'ue qr': !navigationOpen }"></span>
+              <span class="rc i r s eh um tg te rd eb ml jl gl" :class="{ 'ue hl': !navigationOpen }"></span>
+            </span>
+            <span class="du-block h q vd yc lf">
+              <span class="rc eh um tg ml jl el h na r ve yc" :class="{ 'sd dl': !navigationOpen }"></span>
+              <span class="rc eh um tg ml jl qr h s pa vd rd" :class="{ 'sd rr': !navigationOpen }"></span>
+            </span>
+          </span>
+        </button>
+        <!-- Hamburger Toggle BTN -->
       </div>
 
       <div class="vd wo/4 sd qo f ho oo wf yf" :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen }">
@@ -101,8 +101,8 @@
       <!-- Bg Shapes -->
 
       <!-- Section Title Start -->
-      <div
-        x-data="{ sectionTitle: `Let’s Stay Connected`, sectionTitleText: ` Submit your queries to stay connected - looking forward to hear from you.`}">
+      <div>
+        <span id="sucess-message">Looking forward to your message....</span>
         <div class="animate_top bb ze rj ki xn vq">
           <h2 x-text="sectionTitle" class="fk vj pr kk wm on/5 gq/2 bb _b">
           </h2>
@@ -178,8 +178,8 @@
             <form id="contactForm">
               <div class="tc sf yo ap zf ep qb">
                 <div class="vd to/2 input-group">
-                  <label class="rc ac" for="fullname">Name</label>
-                  <input type="text" name="fullname" id="name" placeholder="Enter Name"
+                  <label class="rc ac" for="name">Name</label>
+                  <input type="text" name="name" id="name" placeholder="Enter Name"
                     class=" vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi">
                   <span id="name-error"></span>
                 </div>
@@ -201,7 +201,7 @@
 
                 <div class="vd to/2 input-group">
                   <label class="rc ac" for="subject">Subject</label>
-                  <input type="text" for="subject" id="subject" placeholder="Type your subject"
+                  <input type="text" name="subject" id="subject" placeholder="Type your subject"
                     class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi" />
                   <span id="subject-error"></span>
                 </div>
@@ -215,7 +215,7 @@
               </div>
 
               <div class="tc xf">
-                <button type=" button" class="vc rg lk gh ml il hi gi _l" id="send-button" onclick="validateForm()">
+                <button type="button" class="vc rg lk gh ml il hi gi _l" id="send-button">
                   Send Message
                 </button>
               </div>

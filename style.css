@@ -83,6 +83,35 @@ progress{
   color:greenyellow;
   font-size:1rem;
 }
+/* Centered, responsive success message shown on top of the page */
+#success-message{
+  position: relative;
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+  width: min(90%, 420px);
+  max-width: 95%;
+  padding-top:2em;
+  color: #dee6d9; /* light green */
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 420px){
+  #success-message{
+    top: 6vh;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
 blockquote,
 dl,
 dd,

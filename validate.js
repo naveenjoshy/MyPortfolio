@@ -68,6 +68,28 @@ function validateForm() {
         document.getElementById('contactForm').reset();
         
         alert("Message Send submitted successfully! \n You will be hearing from me soon");
+        var successEl = document.getElementById('success-message') || document.getElementById('show-Message');
+        if (successEl) successEl.innerHTML = "Thank you for your response...!";
+
     }
     return isValid;
 }
+
+// Prevent the form from reloading the page and wire up button safely
+document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('contactForm');
+    var sendBtn = document.getElementById('send-button');
+
+    if (sendBtn) {
+        // ensure button is non-submitting
+        try { sendBtn.type = 'button'; } catch (e) {}
+        sendBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            var valid = validateForm();
+            if (valid) {
+                var successEl = document.getElementById('success-message') || document.getElementById('show-Message');
+                if (successEl) successEl.innerHTML = "Thank you for your response...!";
+            }
+        });
+    }
+});
