@@ -197,6 +197,10 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         console.log('All validations passed');
         
+        // Get the submitted name
+        const submittedName = document.getElementById('name')?.value.trim() || 'Guest';
+        console.log('Submitted name:', submittedName);
+        
         // Hide the form first
         parentForm.classList.add('hidden');
         parentForm.setAttribute('aria-hidden', 'true');
@@ -204,29 +208,23 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (successPopup) {
           console.log('Success popup found, showing message');
+
+          const headerMessage = document.querySelector('#header-message span') || document.getElementById('header-message');
+          if (headerMessage) {
+            headerMessage.textContent = 'Message Send sucessfully';
+          }
           
-          // Show the success message with animation
+          // Update the name in the success message
+          const nameElement = document.getElementById('submitted-name');
+          if (nameElement) {
+            nameElement.textContent = submittedName;
+            console.log('Name updated in message');
+          }
+          
+          // Show the success message with animation (stays visible)
           successPopup.classList.remove('hidden', 'opacity-0', 'scale-95');
           successPopup.classList.add('flex', 'opacity-100', 'scale-100');
-          console.log('Classes applied to success popup:', successPopup.className);
-          
-          // Hide success message and show form again after 3 seconds
-          setTimeout(() => {
-            successPopup.classList.add('opacity-0', 'scale-95');
-            successPopup.classList.remove('opacity-100', 'scale-100');
-            
-            setTimeout(() => {
-              successPopup.classList.add('hidden');
-              successPopup.classList.remove('flex');
-              
-              // Reset form and show it again
-              parentForm.reset();
-              visitedFields.clear();
-              checkFormStatus();
-              parentForm.classList.remove('hidden');
-              parentForm.setAttribute('aria-hidden', 'false');
-            }, 300);
-          }, 3000);
+          console.log('Success message displayed and will stay visible until page reload');
         } else {
           console.log('Success popup NOT found!');
         }
