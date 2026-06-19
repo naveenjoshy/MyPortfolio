@@ -194,19 +194,34 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isNameValid || !isEmailValid || !isPhoneValid || !isSubjectValid || !isMessageValid) {
         submitBtn.disabled = true;
       } else {
-        if (successPopup) {
-          // 1. Structural DOM node reveal
-          successPopup.classList.remove('hidden');
-          successPopup.classList.add('flex'); 
-          
-          // 2. Queue animated sliding step updates to bypass transition paint issues
-          setTimeout(() => {
-            successPopup.classList.add('opacity-100', 'translate-x-0', 'translate-y-0');
-            successPopup.classList.remove('opacity-0', '-translate-x-4', 'md:-translate-y-2');
-          }, 10);
-          
+        if (successPopup && parentForm) {
+          // Hide the form
           parentForm.classList.add('hidden');
           parentForm.setAttribute('aria-hidden', 'true');
+          
+          // Show the success message with animation
+          successPopup.classList.remove('hidden', 'opacity-0', 'scale-95');
+          successPopup.classList.add('flex', 'opacity-100', 'scale-100');
+          
+          // Reset form fields after brief delay
+          setTimeout(() => {
+            parentForm.reset();
+            visitedFields.clear();
+            checkFormStatus();
+            
+            // Hide success message and show form again after 3 seconds
+            setTimeout(() => {
+              successPopup.classList.add('opacity-0', 'scale-95');
+              successPopup.classList.remove('opacity-100', 'scale-100');
+              
+              setTimeout(() => {
+                successPopup.classList.add('hidden');
+                successPopup.classList.remove('flex');
+                parentForm.classList.remove('hidden');
+                parentForm.setAttribute('aria-hidden', 'false');
+              }, 300);
+            }, 3000);
+          }, 300);
         }
       }
     });
