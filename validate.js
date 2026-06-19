@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function setError(inputElement, errorElement, message) {
     if (errorElement) errorElement.textContent = message;
     inputElement.style.borderColor = '#ff6b6b';
-    // Remove check-mark indicator if error validation states drop down
+    // Remove checkmark indicator if error validation states drop down
     inputElement.closest('.field-container')?.classList.remove('is-valid');
   }
 
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (errorElement) errorElement.textContent = '';
     inputElement.style.borderColor = isCorrected ? '#d1ffb3' : '';
     
-    // Toggle active check-mark visibility css state hooks
+    // Toggle active checkmark visibility css state hooks
     if (isCorrected) {
       inputElement.closest('.field-container')?.classList.add('is-valid');
     } else {
@@ -205,31 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
             successPopup.classList.remove('opacity-0', '-translate-x-4', 'md:-translate-y-2');
           }, 10);
           
-          parentForm.reset();
-          visitedFields.clear(); 
-          
-          requiredFieldIds.forEach(id => {
-            const inputEl = document.getElementById(id);
-            if (inputEl) {
-              inputEl.style.borderColor = '';
-              inputEl.closest('.field-container')?.classList.remove('is-valid');
-            }
-          });
-
-          checkFormStatus(); // Re-lock submit button configuration array states
-
-          // 3. Smoothly reverse transition states out after 4 seconds complete
-          setTimeout(() => {
-            successPopup.classList.remove('opacity-100', 'translate-x-0', 'translate-y-0');
-            successPopup.classList.add('opacity-0', '-translate-x-4', 'md:-translate-y-2');
-            
-            setTimeout(() => {
-              successPopup.classList.remove('flex');
-              successPopup.classList.add('hidden');
-            },
-              500);
-          },
-            4000);
+          parentForm.classList.add('hidden');
+          parentForm.setAttribute('aria-hidden', 'true');
         }
       }
     });
