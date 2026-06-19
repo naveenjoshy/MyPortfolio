@@ -108,7 +108,7 @@ margin-top: 0.25rem;
 }
 
 
-/* --- Green Checkmark Icon with Smooth Animation --- */
+/* --- Green Check-mark Icon with Smooth Animation --- */
 
 .field-container {
   position: relative;
@@ -130,7 +130,7 @@ margin-top: 0.25rem;
   pointer-events: none;
 }
 
-/* Stretches textarea checkmark position down slightly */
+/* Stretches textarea check-mark position down slightly */
 .field-container textarea ~ .valid-check {
   top: 38px;
 }
@@ -248,20 +248,31 @@ margin-top: 0.25rem;
 
 
 /* Centered, responsive success message shown on center of screen */
-#success-message{
+#header-message{
   position: sticky;
-  left: 50%;
   width: min(90%, 420px);
   padding: 1.5rem 1.25rem;
   border-radius: 8px;
   text-align: center;
   font-size: 100%;
-  z-index: 2000;
   display: flex;
   flex-direction: column;   /* Stacks elements vertically */
   align-items: center;      /* Centers items horizontally */
   justify-content: center;
 }
+
+#success-message {
+  padding-top: 5px;
+  font-size: 1.2rem; /* Makes the font and emoji very large */
+  
+  /* If you want it perfectly centered vertically and horizontally on the screen: */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50; /* Ensures it sits on top of all other elements */
+}
+
 
 @media (max-width: 480px){
   #success-message{
