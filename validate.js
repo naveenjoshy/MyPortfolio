@@ -192,36 +192,43 @@ document.addEventListener('DOMContentLoaded', () => {
       const isMessageValid = validateMessage();
 
       if (!isNameValid || !isEmailValid || !isPhoneValid || !isSubjectValid || !isMessageValid) {
+        console.log('Validation failed');
         submitBtn.disabled = true;
       } else {
-        if (successPopup && parentForm) {
-          // Hide the form
-          parentForm.classList.add('hidden');
-          parentForm.setAttribute('aria-hidden', 'true');
+        console.log('All validations passed');
+        
+        // Hide the form first
+        parentForm.classList.add('hidden');
+        parentForm.setAttribute('aria-hidden', 'true');
+        console.log('Form hidden');
+        
+        if (successPopup) {
+          console.log('Success popup found, showing message');
           
           // Show the success message with animation
           successPopup.classList.remove('hidden', 'opacity-0', 'scale-95');
           successPopup.classList.add('flex', 'opacity-100', 'scale-100');
+          console.log('Classes applied to success popup:', successPopup.className);
           
-          // Reset form fields after brief delay
+          // Hide success message and show form again after 3 seconds
           setTimeout(() => {
-            parentForm.reset();
-            visitedFields.clear();
-            checkFormStatus();
+            successPopup.classList.add('opacity-0', 'scale-95');
+            successPopup.classList.remove('opacity-100', 'scale-100');
             
-            // Hide success message and show form again after 3 seconds
             setTimeout(() => {
-              successPopup.classList.add('opacity-0', 'scale-95');
-              successPopup.classList.remove('opacity-100', 'scale-100');
+              successPopup.classList.add('hidden');
+              successPopup.classList.remove('flex');
               
-              setTimeout(() => {
-                successPopup.classList.add('hidden');
-                successPopup.classList.remove('flex');
-                parentForm.classList.remove('hidden');
-                parentForm.setAttribute('aria-hidden', 'false');
-              }, 300);
-            }, 3000);
-          }, 300);
+              // Reset form and show it again
+              parentForm.reset();
+              visitedFields.clear();
+              checkFormStatus();
+              parentForm.classList.remove('hidden');
+              parentForm.setAttribute('aria-hidden', 'false');
+            }, 300);
+          }, 3000);
+        } else {
+          console.log('Success popup NOT found!');
         }
       }
     });
