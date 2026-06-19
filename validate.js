@@ -143,8 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   const parentForm = document.getElementById('contact-form');
   const successPopup = document.getElementById('success-message');
-  const successSpan = successPopup ? successPopup.querySelector('.success-message') : null;
-  const baseSuccessMessage = successSpan ? successSpan.textContent : '';
   
   if (parentForm) {
     const submitBtn = document.getElementById('form-submit-btn');
@@ -206,11 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
             successPopup.classList.add('opacity-100', 'translate-x-0', 'translate-y-0');
             successPopup.classList.remove('opacity-0', '-translate-x-4', 'md:-translate-y-2');
           }, 10);
-
-          const userName = document.getElementById('name').value.trim();
-          if (successSpan) {
-            successSpan.textContent = baseSuccessMessage + userName;
-          }
           
           parentForm.reset();
           visitedFields.clear(); 
