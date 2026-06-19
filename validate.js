@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function setError(inputElement, errorElement, message) {
     if (errorElement) errorElement.textContent = message;
     inputElement.style.borderColor = '#ff6b6b';
-    // Remove checkmark indicator if error validation states drop down
+    // Remove check-mark indicator if error validation states drop down
     inputElement.closest('.field-container')?.classList.remove('is-valid');
   }
 
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (errorElement) errorElement.textContent = '';
     inputElement.style.borderColor = isCorrected ? '#d1ffb3' : '';
     
-    // Toggle active checkmark visibility css state hooks
+    // Toggle active check-mark visibility css state hooks
     if (isCorrected) {
       inputElement.closest('.field-container')?.classList.add('is-valid');
     } else {
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const headerMessage = document.querySelector('#header-message span') || document.getElementById('header-message');
           if (headerMessage) {
-            headerMessage.textContent = 'Message Send sucessfully';
+            headerMessage.textContent = 'Message Send successfully';
           }
           
           // Update the name in the success message
