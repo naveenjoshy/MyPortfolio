@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mr. Naveen Joshy - Web Development services</title>
-  <link rel="icon" href="logo.gif">
+  <link rel="icon" href="images/logo-dark.png">
   <link href="style.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
@@ -44,7 +44,8 @@
               <!-- Hamburger Toggle BTN -->
       </div>
 
-      <div class="vd wo/4 sd qo f ho oo wf yf" :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen }">
+      <div class="vd wo/4 sd qo f ho oo wf yf"
+        :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen, 'xc': !navigationOpen, 'eh': navigationOpen }">
         <nav>
           <ul class="tc _o sf yo cg ep">
             <li><a href="index.html" class="xl" :class="{ 'mk': page === 'home' }">Home</a></li>
