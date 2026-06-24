@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Regex Validation Rules
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const nameRegex = /^[a-zA-Z\s'-]{2,}$/;
   const phoneRegex = /^\+?[0-9\s-]{7,15}$/; 
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (errorElement) errorElement.textContent = '';
     inputElement.style.borderColor = isCorrected ? '#d1ffb3' : '';
     
-    // Toggle active check-mark visibility css state hooks
+    // Toggle active check-mark visibility
     if (isCorrected) {
       inputElement.closest('.field-container')?.classList.add('is-valid');
     } else {
@@ -192,41 +191,41 @@ document.addEventListener('DOMContentLoaded', () => {
       const isMessageValid = validateMessage();
 
       if (!isNameValid || !isEmailValid || !isPhoneValid || !isSubjectValid || !isMessageValid) {
-        console.log('Validation failed');
+        //console.log('Validation failed');
         submitBtn.disabled = true;
       } else {
-        console.log('All validations passed');
+        //console.log('All validations passed');
         
         // Get the submitted name
         const submittedName = document.getElementById('name')?.value.trim() || 'Guest';
-        console.log('Submitted name:', submittedName);
+        //console.log('Submitted name:', submittedName);
         
         // Hide the form first
         parentForm.classList.add('hidden');
         parentForm.setAttribute('aria-hidden', 'true');
-        console.log('Form hidden');
+        //console.log('Form hidden');
         
         if (successPopup) {
-          console.log('Success popup found, showing message');
+          //console.log('Success popup found, showing message');
 
           const headerMessage = document.querySelector('#header-message span') || document.getElementById('header-message');
           if (headerMessage) {
-            headerMessage.textContent = 'Message Send successfully';
+            headerMessage.textContent = 'Message Sent successfully';
           }
           
           // Update the name in the success message
           const nameElement = document.getElementById('submitted-name');
           if (nameElement) {
             nameElement.textContent = submittedName;
-            console.log('Name updated in message');
+            //console.log('Name updated in message');
           }
           
           // Show the success message with animation (stays visible)
           successPopup.classList.remove('hidden', 'opacity-0', 'scale-95');
           successPopup.classList.add('flex', 'opacity-100', 'scale-100');
-          console.log('Success message displayed and will stay visible until page reload');
+          //console.log('Success message displayed and will stay visible until page reload');
         } else {
-          console.log('Success popup NOT found!');
+          //console.log('Success popup NOT found!');
         }
       }
     });
