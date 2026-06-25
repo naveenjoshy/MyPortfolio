@@ -11,13 +11,14 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
-  x-init="
+<body class="blog-single-page"
+  x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }" x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
   :class="{'b eh': darkMode === true}">
   <!-- ===== Header Start ===== -->
-  <header class="simple-navbar">
+  <header class="simple-navbar" @scroll.window.passive="stickyMenu = (window.pageYOffset > 24)"
+    :class="{ 'simple-navbar--scrolled': stickyMenu }">
     <div class="simple-navbar__container">
       <a class="simple-navbar__brand" href="index.html">
         <img src="images/logo-dark.png" alt="Naveen Joshy logo" width="46" height="46" />
@@ -63,15 +64,15 @@
 
   <main>
     <!-- ===== Blog Single Start ===== -->
-    <section class="gj qp gr hj rp hr">
+    <section class="gj qp gr hj rp hr blog-single-page__section">
       <div class="bb ze ki xn 2xl:ud-px-0">
-        <div class="tc sf yo zf kq">
-          <div class="ro">
+        <div class="tc sf yo zf kq blog-single-layout">
+          <div class="ro blog-single-main">
             <div
               class="animate_top rounded-md shadow-solid-13 bg-white dark:bg-blacksection border border-stroke dark:border-strokedark p-7.5 md:p-10">
               <img src="images/blog-big.png" alt="Blog" />
 
-              <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Kobe Steel plant that supplied</h2>
+              <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb"></h2>
               <p>
                 The Flipkart Homepage Clone is a detailed, pixel-perfect front-end replication of the primary desktop
                 landing page of
@@ -80,14 +81,17 @@
                 mastering complex layout structures, visual hierarchy, and exact design matching. It serves as a
                 showcase of core UI
                 engineering and layout precision.
-              </p>To learn more about my technical capabilities and view my wider portfolio of work, I welcome you to
-              get in touch with me directly. Beyond this Flipkart homepage clone, I have engineered a diverse range of
-              web development projects that showcase my growing skills in front-end architecture, user experience
-              design, and clean coding practices. Whether you are interested in discussing the underlying code structure
-              of this project, exploring my other web applications, or discussing potential collaboration and employment
-              opportunities, I am always open to professional networking and feedback. Please feel free to reach out via
-              my professional channels to connect, review my live deployments, or request access to my complete
-              development repositories.
+              </p>
+              <p class="ob">
+                To learn more about my technical capabilities and view my wider portfolio of work, I welcome you to get
+                in touch with me directly. Beyond this Flipkart homepage clone, I have engineered a diverse range of web
+                development projects that showcase my growing skills in front-end architecture, user experience design,
+                and clean coding practices. Whether you are interested in discussing the underlying code structure of
+                this project, exploring my other web applications, or discussing potential collaboration and employment
+                opportunities, I am always open to professional networking and feedback. Please feel free to reach out
+                via my professional channels to connect, review my live deployments, or request access to my complete
+                development repositories.
+              </p>
               <p class="ob">
                 the project focuses on mastering complex web layouts, visual hierarchy, and exact design matching
                 without relying on
@@ -130,7 +134,7 @@
             </div>
           </div>
 
-          <div class="jn/2 so">
+          <div class="jn/2 so blog-single-sidebar">
             <div class="animate_top fb">
               <form action="#">
                 <div class="i">
@@ -148,7 +152,7 @@
               </form>
             </div>
 
-            <div class="animate_top fb">
+            <div class="animate_top fb blog-single-categories">
               <h4 class="tj kk wm qb">Categories</h4>
 
               <ul>
@@ -173,20 +177,20 @@
             <div class="animate_top">
               <h4 class="tj kk wm qb">Related Posts</h4>
 
-              <div>
-                <div class="tc fg 2xl:ud-gap-6 qb">
+              <div class="blog-single-related-posts">
+                <div class="blog-single-related-post qb">
                   <img src="images/blog-small-01.png" alt="Blog" />
                   <h5 class="wj kk wm xl bn ml il">
                     <a href="#!">The UDEMY Clone</a>
                   </h5>
                 </div>
-                <div class="tc fg 2xl:ud-gap-6 qb">
+                <div class="blog-single-related-post qb">
                   <img src="images/blog-small-02.png" alt="Blog" />
                   <h5 class="wj kk wm xl bn ml il">
                     <a href="#!">Flipkart Clone</a>
                   </h5>
                 </div>
-                <div class="tc fg 2xl:ud-gap-6">
+                <div class="blog-single-related-post">
                   <img src="images/blog-small-03.png" alt="Blog" />
                   <h5 class="wj kk wm xl bn ml il">
                     <a href="#!">ProPros Clone</a>
