@@ -87,14 +87,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const nameErr = document.getElementById('name-error');
   if (nameInp) {
     nameInp.addEventListener('blur', validateName);
-    nameInp.addEventListener('input', () => { if (nameRegex.test(nameInp.value.trim()) || nameInp.value.trim() === '') clearError(nameInp, nameErr); });
+    nameInp.addEventListener('input', () => {
+      const val = nameInp.value.trim();
+      if (val === '') {
+        clearError(nameInp, nameErr, false);
+      } else if (nameRegex.test(val)) {
+        clearError(nameInp, nameErr, true);
+      }
+    });
   }
 
   const mailInp = document.getElementById('email');
   const mailErr = document.getElementById('mail-error');
   if (mailInp) {
     mailInp.addEventListener('blur', validateEmail);
-    mailInp.addEventListener('input', () => { if (emailRegex.test(mailInp.value.trim()) || mailInp.value.trim() === '') clearError(mailInp, mailErr); });
+    mailInp.addEventListener('input', () => {
+      const val = mailInp.value.trim();
+      if (val === '') {
+        clearError(mailInp, mailErr, false);
+      } else if (emailRegex.test(val)) {
+        clearError(mailInp, mailErr, true);
+      }
+    });
   }
 
   const phoneInp = document.getElementById('phone');
@@ -119,7 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (digits.length > 10) formattedValue += ' ' + digits.substring(10, 15);
       }
       phoneInp.value = formattedValue;
-      if (phoneRegex.test(phoneInp.value.trim()) || phoneInp.value.trim() === '') clearError(phoneInp, phoneErr);
+      const val = phoneInp.value.trim();
+      if (val === '') {
+        clearError(phoneInp, phoneErr, false);
+      } else if (phoneRegex.test(val)) {
+        clearError(phoneInp, phoneErr, true);
+      }
     });
   }
 
@@ -127,14 +146,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const subErr = document.getElementById('subject-error');
   if (subInp) {
     subInp.addEventListener('blur', validateSubject);
-    subInp.addEventListener('input', () => { if (subInp.value.trim().length >= 4 || subInp.value.trim() === '') clearError(subInp, subErr); });
+    subInp.addEventListener('input', () => {
+      const val = subInp.value.trim();
+      if (val === '') {
+        clearError(subInp, subErr, false);
+      } else if (val.length >= 4) {
+        clearError(subInp, subErr, true);
+      }
+    });
   }
 
   const msgInp = document.getElementById('message');
   const msgErr = document.getElementById('message-error');
   if (msgInp) {
     msgInp.addEventListener('blur', validateMessage);
-    msgInp.addEventListener('input', () => { if (msgInp.value.trim().length >= 10 || msgInp.value.trim() === '') clearError(msgInp, msgErr); });
+    msgInp.addEventListener('input', () => {
+      const val = msgInp.value.trim();
+      if (val === '') {
+        clearError(msgInp, msgErr, false);
+      } else if (val.length >= 10) {
+        clearError(msgInp, msgErr, true);
+      }
+    });
   }
 
   // ==========================================
